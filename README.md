@@ -1,6 +1,6 @@
 # Qiwei Zhang · 张其炜
 
-根据根目录中的中英文 DOCX 简历制作的个人主页。默认中文，右上角可随时切换英文，语言选择会保留。GitHub 使用用户指定的 [rainbowsteins](https://github.com/rainbowsteins/)。
+以「XYBERMIND 联合创始人」为主要定位的中英文个人主页。文案参考用户简历与 [XYBERMIND 团队介绍](https://www.xyber-mind.com/zh/team)，工作年限采用团队官网的 10+ 年口径。X-CAD 仅介绍产品功能、个人职责与落地成果。默认中文，右上角可切换英文并保留语言选择。GitHub 使用用户指定的 [rainbowsteins](https://github.com/rainbowsteins/)。
 
 ## 立即预览
 

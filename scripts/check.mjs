@@ -11,7 +11,9 @@ for (const lang of ['zh','en']) {
  for(const id of ['about','work','journey','toolkit','contact']) assert.ok(html.includes(`id="${id}"`)&&html.includes(`href="#${id}"`),`Working section target: ${id}`);
  assert.ok(html.includes('https://github.com/rainbowsteins/'));
  assert.ok(!html.includes('github.com/monorio'));
- assert.ok(html.includes(lang==='zh'?'让智能，':'Intelligence,'));
+ assert.ok(html.includes(lang==='zh'?'联合创始人':'Co-founder,'));
+ assert.ok(html.includes('XYBERMIND'));
+ assert.ok(html.includes(lang==='zh'?'https://www.xyber-mind.com/zh':'https://www.xyber-mind.com/'));
  assert.ok(html.includes(lang==='zh'?'Qiwei_Zhang_CV_ZH.docx':'Qiwei_Zhang_CV_EN.docx'));
  assert.equal((html.match(/class="project-link"/g)||[]).length,3,'Three project detail actions');
  assert.equal((html.match(/class="skill-group reveal"/g)||[]).length,6,'Six skill groups');
