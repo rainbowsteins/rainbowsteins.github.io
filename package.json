@@ -1,0 +1,28 @@
+{
+  "name": "qiwei-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/dev.mjs --production",
+    "typecheck": "node node_modules/typescript/bin/tsc --noEmit",
+    "check": "node scripts/check.mjs"
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "lucide-react": "0.562.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.27.7",
+    "typescript": "5.9.3",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3"
+  },
+  "description": "Bilingual personal portfolio for Qiwei Zhang \u2014 AI engineering, agentic CAD and robotics.",
+  "engines": {
+    "node": ">=20"
+  }
+}
