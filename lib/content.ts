@@ -17,8 +17,8 @@ export const content = {
     aboutText: "我是张其炜，XYBERMIND 联合创始人，主要负责 AI 产品研发。过去十余年，我的工作涉及软件开发、数据工程、机器学习和企业 AI 应用。",
     aboutText2: "我习惯先明确产品要解决的问题，再推进开发、评估和部署。除了模型效果，我也关注系统在实际使用中的稳定性，以及用户反馈能否得到及时处理。目前，我主要与团队推进 X-CAD 的研发和企业交付。",
     focus: "主要工作", focusItems: ["AI 产品研发", "技术规划与工程交付", "制造业 AI 应用"],
-    selectedLabel: "PROJECTS", selectedTitle: "项目与实践", selectedIntro: "部分由我参与或主导的项目，涵盖产品研发、机器人与生成式 AI 应用。",
-    detail: "查看项目", product: "访问 X-CAD 官网", roleLabel: "我的职责", approachLabel: "主要工作", resultLabel: "项目成果", stackLabel: "相关技术",
+    selectedLabel: "PROJECTS", selectedTitle: "项目与实践", selectedIntro: "部分由我参与或主导的项目，涵盖产品研发、机器人、无人机与生成式 AI 应用。",
+    detail: "查看项目", source: "GitHub 源码", product: "访问 X-CAD 官网", roleLabel: "我的职责", approachLabel: "主要工作", resultLabel: "项目成果", stackLabel: "相关技术",
     projects: [
       {
         id: "xcad", category: "AI DESIGN / CAD", title: "X-CAD", subtitle: "面向设计与制造的 AI CAD 产品",
@@ -28,7 +28,7 @@ export const content = {
         result: "已在两家制造企业内部部署，其中包括希禾增材 Addireen。我与团队共同推进产品开发、企业部署和持续迭代。", tech: "",
       },
       {
-        id: "robotics", category: "ROBOTICS / IMITATION LEARNING", title: "机械臂垃圾分拣", subtitle: "基于模仿学习的机器人项目",
+        id: "robotics", category: "ROBOTICS / IMITATION LEARNING", title: "WasteArm", subtitle: "基于模仿学习的机械臂垃圾分拣",
         description: "负责主从机械臂的组装与标定、示教数据采集，以及分拣策略的训练和真机测试。",
         tags: ["LeRobot", "ACT", "PyTorch"], metric: "150", metricLabel: "条遥操作示教数据", year: "2026",
         role: "项目核心负责人，成果入选 UTS AI Showcase 展示。",
@@ -41,7 +41,14 @@ export const content = {
         tech: "LeRobot · ACT · PyTorch · YOLO · OpenCV · SO-101",
       },
       {
-        id: "aigc", category: "GENERATIVE AI / INTERACTIVE", title: "AIGC 互动视觉小说", subtitle: "独立设计与开发的交互项目",
+        id: "drone", category: "DRONE / FLIGHT TESTS", title: "无人机穿环飞行", subtitle: "实机飞行与多视角记录",
+        description: "无人机室内飞行与穿环测试，包含现场实拍和控制界面录屏，可切换前视与侧视等不同视频。",
+        tags: ["无人机", "实机测试", "多视角视频"], metric: "5", metricLabel: "段项目演示视频", year: "项目演示",
+        role: "无人机项目实践与实机测试。", approach: [],
+        result: "收录 5 段项目视频，展示室内飞行场景、不同观察视角和控制界面。可在播放器下方切换观看。", tech: "",
+      },
+      {
+        id: "aigc", category: "GENERATIVE AI / INTERACTIVE", title: "LostHorizon", subtitle: "AI 互动视觉小说 · 独立设计与开发",
         description: "结合文本与图像生成，根据玩家的选择生成后续剧情和场景，完成可交互的视觉小说体验。",
         tags: ["ChatGPT", "Stable Diffusion", "Ren’Py"], metric: "2023", metricLabel: "本科毕业设计", year: "2023",
         role: "独立负责产品设计、开发与集成。",
@@ -112,8 +119,8 @@ export const content = {
     aboutText: "I’m Qiwei Zhang, a co-founder of XYBERMIND, where I lead AI product development. I have more than ten years of experience spanning software development, data engineering, machine learning and enterprise AI applications.",
     aboutText2: "I start by understanding the problem a product needs to solve, then work through development, evaluation and deployment. I care about model performance, but also about how reliably a system works for its users and how their feedback informs the next release. My current work centres on X-CAD and its deployment with manufacturing clients.",
     focus: "CURRENT FOCUS", focusItems: ["AI product development", "Technical planning and delivery", "AI applications in manufacturing"],
-    selectedLabel: "PROJECTS", selectedTitle: "Selected projects", selectedIntro: "Work I have led or contributed to across product development, robotics and generative AI.",
-    detail: "View project", product: "Visit X-CAD website", roleLabel: "MY ROLE", approachLabel: "MY CONTRIBUTION", resultLabel: "RESULTS", stackLabel: "TECHNOLOGIES",
+    selectedLabel: "PROJECTS", selectedTitle: "Selected projects", selectedIntro: "Work across product development, robotics, drone flight testing and generative AI.",
+    detail: "View project", source: "Source on GitHub", product: "Visit X-CAD website", roleLabel: "MY ROLE", approachLabel: "MY CONTRIBUTION", resultLabel: "RESULTS", stackLabel: "TECHNOLOGIES",
     projects: [
       {
         id: "xcad", category: "AI DESIGN / CAD", title: "X-CAD", subtitle: "AI CAD for design and manufacturing",
@@ -123,7 +130,7 @@ export const content = {
         result: "Deployed in-house at two manufacturing companies, including Addireen. I work with the team on product development, client deployment and ongoing improvements.", tech: "",
       },
       {
-        id: "robotics", category: "ROBOTICS / IMITATION LEARNING", title: "Robotic waste sorting", subtitle: "An imitation learning project",
+        id: "robotics", category: "ROBOTICS / IMITATION LEARNING", title: "WasteArm", subtitle: "Robotic waste sorting with imitation learning",
         description: "Assembled and calibrated robotic arms, collected demonstrations, and trained and tested a sorting policy on physical hardware.",
         tags: ["LeRobot", "ACT", "PyTorch"], metric: "150", metricLabel: "Teleoperated demonstrations", year: "2026",
         role: "Core project lead. Presented at the UTS AI Showcase.",
@@ -136,7 +143,14 @@ export const content = {
         tech: "LeRobot · ACT · PyTorch · YOLO · OpenCV · SO-101",
       },
       {
-        id: "aigc", category: "GENERATIVE AI / INTERACTIVE", title: "Interactive AI visual novel", subtitle: "An independently developed project",
+        id: "drone", category: "DRONE / FLIGHT TESTS", title: "Drone ring-crossing flights", subtitle: "Physical flight tests from multiple views",
+        description: "Indoor drone flight and ring-crossing tests, with physical recordings and captures of the flight-control interface. Switch between the front and side views in the player.",
+        tags: ["Drone", "Flight tests", "Multiple views"], metric: "5", metricLabel: "Project demonstration videos", year: "VIDEO DEMO",
+        role: "Drone project work and physical flight testing.", approach: [],
+        result: "Five project recordings covering the indoor flight setup, different viewpoints and the control interface. Select a recording below the player.", tech: "",
+      },
+      {
+        id: "aigc", category: "GENERATIVE AI / INTERACTIVE", title: "LostHorizon", subtitle: "An independently developed AI visual novel",
         description: "Combined text and image generation in an interactive visual novel, producing new storylines and scenes in response to player choices.",
         tags: ["ChatGPT", "Stable Diffusion", "Ren’Py"], metric: "2023", metricLabel: "Undergraduate capstone", year: "2023",
         role: "Sole designer and developer, responsible for the product and its integrations.",

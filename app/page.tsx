@@ -2,6 +2,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ArrowRight, ArrowDown, ArrowUp, Github, Download, Copy, Check, Menu, X, Pause, Play, Braces, Cpu, Database, Server, ScanLine, Network, GraduationCap, MapPin, ExternalLink } from "lucide-react";
 import { NeuralSculpture } from "@/components/neural-sculpture";
+import { ProjectMedia, pauseProjectVideos } from "@/components/project-media";
+import { projectMedia, projectRepositories } from "@/lib/project-media";
 import { content, skillSets, type Language } from "@/lib/content";
 
 const sectionIds = ["about", "work", "journey", "toolkit", "contact"];
@@ -43,6 +45,11 @@ function ProjectVisual({ type }: { type: string }) {
       </g><g fill="#9c85b1" fontFamily="monospace" fontSize="9"><text x="40" y="40">GENERATIVE NARRATIVE</text><text x="359" y="235">TEXT + IMAGE</text></g>
     </svg>}
   </div>;
+}
+
+
+function ProjectVisualOrMedia({ projectId, lang }: { projectId: string; lang: Language }) {
+  return projectMedia[projectId] ? <ProjectMedia projectId={projectId} lang={lang}/> : <ProjectVisual type={projectId}/>;
 }
 
 export default function Home({ initialLanguage = "zh" }: { initialLanguage?: Language }) {
@@ -94,7 +101,7 @@ export default function Home({ initialLanguage = "zh" }: { initialLanguage?: Lan
     sectionIds.forEach(id => { const el = document.getElementById(id); if (el) navObserver.observe(el); });
     return () => { observer.disconnect(); navObserver.disconnect(); };
   }, []);
-  useEffect(() => { if (selectedProject && dialog.current && !dialog.current.open) dialog.current.showModal(); }, [selectedProject]);
+  useEffect(() => { if (selectedProject && dialog.current && !dialog.current.open) { pauseProjectVideos(); dialog.current.showModal(); } }, [selectedProject]);
   useEffect(() => {
     document.body.style.overflow = selectedProject || menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -149,8 +156,8 @@ export default function Home({ initialLanguage = "zh" }: { initialLanguage?: Lan
       <section id="about" className="section about-section container reveal"><div className="section-label"><span className="section-mark"/>{t.aboutLabel}</div><div className="about-layout"><h2>{t.aboutTitle}</h2><div className="about-content"><p>{t.aboutText}</p><p>{t.aboutText2}</p><div className="focus-list"><span className="mono focus-title">{t.focus}</span>{t.focusItems.map((item, i) => <span key={item}><i className={`focus-dot dot-${i}`}/>{item}</span>)}</div></div></div></section>
       <section id="work" className="section work-section container"><div className="section-heading reveal"><div><div className="section-label"><span className="section-mark"/>{t.selectedLabel}</div><h2>{t.selectedTitle}</h2></div><p>{t.selectedIntro}</p></div>
         <div className="project-grid">{t.projects.map(project => <article className={`project-card project-${project.id} reveal`} key={project.id}>
-          <div className="project-card-content"><div className="project-meta mono"><span><i/>{project.category}</span><span>{project.year}</span></div><h3>{project.title}</h3><p className="project-subtitle">{project.subtitle}</p><p className="project-description">{project.description}</p><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-card-bottom"><div className="project-metric"><strong>{project.metric}</strong><span>{project.metricLabel}</span></div><button type="button" className="project-link" onClick={() => setSelectedProject(project.id)} aria-label={`${t.detail} · ${project.subtitle}`}>{t.detail}<ArrowUpRight size={17}/></button></div></div>
-          <ProjectVisual type={project.id}/>
+          <div className="project-card-content"><div className="project-meta mono"><span><i/>{project.category}</span><span>{project.year}</span></div><h3>{project.title}</h3><p className="project-subtitle">{project.subtitle}</p><p className="project-description">{project.description}</p><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-card-bottom"><div className="project-metric"><strong>{project.metric}</strong><span>{project.metricLabel}</span></div><div className="project-actions">{projectRepositories[project.id] && <a className="project-link project-source" href={projectRepositories[project.id]} target="_blank" rel="noopener noreferrer" aria-label={`${t.source} · ${project.title}`}><Github size={15}/><span>GitHub</span></a>}<button type="button" className="project-link" onClick={() => setSelectedProject(project.id)} aria-label={`${t.detail} · ${project.subtitle}`}>{t.detail}<ArrowUpRight size={17}/></button></div></div></div>
+          <ProjectVisualOrMedia projectId={project.id} lang={lang}/>
         </article>)}</div>
         <a className="github-more reveal" href="https://github.com/rainbowsteins/" target="_blank" rel="noopener noreferrer"><Github size={19}/><span>{t.githubMore}</span><span className="github-handle mono">@rainbowsteins</span><ArrowUpRight size={17}/></a>
       </section>
@@ -164,7 +171,7 @@ export default function Home({ initialLanguage = "zh" }: { initialLanguage?: Lan
     </main>
     <footer className="container site-footer" inert={menuOpen}><a href="#" className="footer-brand">qiwei<span>.</span></a><span>© {new Date().getFullYear()} Qiwei Zhang</span><span className="footer-note">{t.footer}</span><a href="#" className="back-top" aria-label={t.top}>{t.top}<ArrowUp size={14}/></a></footer>
     <dialog ref={dialog} className="project-dialog" onClose={() => setSelectedProject(null)} onCancel={closeProject} onClick={event => { if (event.target === event.currentTarget) closeProject(); }} aria-labelledby="dialog-title">
-      {currentProject && <div className="dialog-content"><div className="dialog-top"><span className="mono">{currentProject.category}</span><button type="button" className="icon-button" onClick={closeProject} aria-label={t.close} autoFocus><X size={21}/></button></div><h2 id="dialog-title">{currentProject.subtitle}</h2><p className="dialog-intro">{currentProject.description}</p><div className="dialog-section"><h3>{t.roleLabel}</h3><p>{currentProject.role}</p></div>{currentProject.approach.length > 0 && <div className="dialog-section"><h3>{t.approachLabel}</h3><ul>{currentProject.approach.map(item => <li key={item}>{item}</li>)}</ul></div>}<div className="dialog-outcome"><h3>{t.resultLabel}</h3><p>{currentProject.result}</p></div>{currentProject.tech && <div className="dialog-section"><h3>{t.stackLabel}</h3><p className="dialog-tech">{currentProject.tech}</p></div>}{currentProject.id === "xcad" && <a className="button button-primary" href="https://x-cad.xyz" target="_blank" rel="noopener noreferrer">{t.product}<ExternalLink size={16}/></a>}</div>}
+      {currentProject && <div className="dialog-content"><div className="dialog-top"><span className="mono">{currentProject.category}</span><button type="button" className="icon-button" onClick={closeProject} aria-label={t.close} autoFocus><X size={21}/></button></div><h2 id="dialog-title">{currentProject.subtitle}</h2><p className="dialog-intro">{currentProject.description}</p>{projectMedia[currentProject.id] && <ProjectMedia key={currentProject.id} projectId={currentProject.id} lang={lang} inDialog/>}<div className="dialog-section"><h3>{t.roleLabel}</h3><p>{currentProject.role}</p></div>{currentProject.approach.length > 0 && <div className="dialog-section"><h3>{t.approachLabel}</h3><ul>{currentProject.approach.map(item => <li key={item}>{item}</li>)}</ul></div>}<div className="dialog-outcome"><h3>{t.resultLabel}</h3><p>{currentProject.result}</p></div>{currentProject.tech && <div className="dialog-section"><h3>{t.stackLabel}</h3><p className="dialog-tech">{currentProject.tech}</p></div>}{projectRepositories[currentProject.id] && <a className="button button-primary" href={projectRepositories[currentProject.id]} target="_blank" rel="noopener noreferrer"><Github size={16}/>{t.source}<ArrowUpRight size={16}/></a>}{currentProject.id === "xcad" && <a className="button button-primary" href="https://x-cad.xyz" target="_blank" rel="noopener noreferrer">{t.product}<ExternalLink size={16}/></a>}</div>}
     </dialog>
   </div>;
 }

@@ -39,6 +39,9 @@ npm run check
 - `lib/content.ts`：中英文文案、工作经历、教育、项目详情与技能。
 - `app/page.tsx`：页面结构、语言切换、项目弹窗、移动端导航、邮箱复制。
 - `app/globals.css`：响应式布局、视觉样式与动效。
+- `components/project-media.tsx`：项目视频播放器、无人机视频切换与播放互斥。
+- `lib/project-media.ts`：WasteArm 与无人机视频清单、封面、时长和 LostHorizon 源码地址。
+- `public/media/`：6 段网页播放视频及对应封面；视频保留完整时长，采用 H.264 / AAC、MP4 fast-start 和按需加载。
 - `components/neural-sculpture.tsx`：随指针变化的三维环结线框；离开视口后停止绘制，可手动暂停，并遵循系统减少动态效果设置。
 - `public/resumes/`：用户提供的原始简历副本，未修改 DOCX 内容。
 - `public/fonts/`：本地托管的 Source Sans 3 英文字体、Noto Sans SC 中文字形子集及许可证。中文不依赖访客设备预装字体。新增中文字符时，可使用 `scripts/subset-font.py` 从上游 Noto Sans SC 可变字体重新生成子集（需安装 `fonttools[woff]`）。
@@ -56,3 +59,5 @@ npm run check
 每次推送到 `main`，`.github/workflows/pages.yml` 都会自动安装依赖、进行类型检查、构建和双语资源检查，成功后发布 `dist/`。可在仓库的 Actions 页面查看进度，也可使用 `workflow_dispatch` 手动重新发布。
 
 本地 `.openai/` 为早期预备的托管配置，已加入 Git 忽略规则；GitHub Pages 的构建与发布不依赖该目录。
+
+项目区包含 X-CAD、WasteArm、无人机穿环飞行和 LostHorizon。WasteArm 的视频来自用户提供的 `WasteArm/68_WasteArm.mp4`，无人机 5 段视频来自 `drone.zip`；源文件在项目上级目录。LostHorizon 的源码链接为 https://github.com/rainbowsteins/LostHorizon 。视频可在项目卡片与详情弹窗中播放，支持全屏；切换视频或打开详情时会暂停其他播放器。无人机实拍保留原始横竖屏方向，画面采用完整显示。
